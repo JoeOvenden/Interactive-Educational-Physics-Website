@@ -1,0 +1,65 @@
+body {
+    background-color: #999999;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h3 {
+    padding-top: 2%;
+    padding-bottom: 1%;
+    font-weight: 400;
+    text-align: center;
+}
+
+div {
+    padding-left: 1%;
+}
+
+p {
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.centered {
+    text-align: center;
+}
+
+.centered-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.padded {
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+#bottom-padination {
+    padding-top: 3%;
+    padding-bottom: 1%;
+    padding-left: 1%;
+}
+
+.dataSpan {
+    width: 100px;
+    display: inline-block;
+}
+
+#zoomSpan {
+    min-width: 200px;
+    padding-right: 6px;
+}
+
+#pauseButton {
+    width: 90px;
+}
+
+.th-number {
+    min-width: 130px;
+}
+
+.th-number-padded {
+    padding-right: 40px;
+    white-space: nowrap;
+}

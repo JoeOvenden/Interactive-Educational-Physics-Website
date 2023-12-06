@@ -1,0 +1,27 @@
+<!-- Pagination linking to other lessons -->
+<nav aria-label="laws-of-nature-pagination" id="bottom-padination">
+  <ul class="pagination">
+
+    <!-- Display "previous" in paginator -->
+    {% if prev %}
+        <li class="page-item"> 
+          <a class="page-link" href="{% url 'static_page' prev %}">Previous</a>
+        </li>
+    {% endif %}
+
+
+    <!-- Display all the lessons as numbers -->
+    {% for lesson in lessons %}
+      <li class="page-item{% if page_index == forloop.counter %} active{% endif %}"><a class="page-link" href="{% url 'static_page' lesson %}">{{ forloop.counter }}</a></li>
+    {% endfor %}
+    
+
+    <!-- Display "next" in paginator -->
+    {% if next %}
+      <li class="page-item">
+        <a class="page-link" href="{% url 'static_page' next %}">Next</a>
+      </li>
+    {% endif %}
+
+  </ul>
+</nav>

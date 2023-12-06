@@ -1,0 +1,42 @@
+{% extends "physics/layout.html" %}
+
+{% block title %}
+    Newton's First Law
+{% endblock %}
+
+{% block body %}
+
+<!-- Beginning of newtons first law lesson text -->
+<h3>Newton's First Law of Motion</h3>
+
+<p><strong>Newton's first law of motion</strong> is as follows:</p>
+
+<p class="centered padded">
+    A body remains at rest, or in motion at a constant speed in a 
+    straight line, unless acted upon by a force.
+</p>
+
+<p>
+    Or in other words, if nothing happens to an object (no force is applied to it), 
+    then it will maintain it's velocity. Now this law we might find a little more 
+    surprising. Indeed, generally for life on earth, if we want to go somewhere we 
+    have to continually put it effort. Whether it's effort from our body to walk 
+    or run, or fuel in the engine of a car being burnt, the action is continuous. 
+    We can't just move a little bit and expect for that energy to keep us moving.
+</p>
+
+<p>
+    Perhaps this is why the famous Greek philosopher Aristotle came up with his 
+    own law (which turned out to be false), that an object's natural state is to 
+    be at rest and if you stop trying to move it, it will come back to rest. 
+    This would be a more familiar framework, but is in fact, overlooking a 
+    great deal of things that happen in all of our interactions on Earth.
+</p>
+
+<p>
+  This brings us on to the concept of Drag and Friction.
+</p>
+
+{% include 'physics/lesson-pagination.html' %}
+
+{% endblock %}

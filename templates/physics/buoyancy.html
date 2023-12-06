@@ -1,0 +1,119 @@
+{% extends "physics/layout.html" %}
+
+{% block title %}
+    Buoyancy
+{% endblock %}
+
+{% block body %}
+
+<!-- Beginning of conservation of energy lesson text-->
+<h3>Buoyancy</h3>
+
+<p>Buoyancy, also known as upthrust, is an upward force exerted by a fluid upon a partially of fully submerged object and is the force that is responsible for objects floating. The magntitude of this force is equal to the mass of fluid that the object is displacing multiplied by the acceleration due to gravity.</p>
+
+<p>Suppose there was a sphere of radius, r and density, d, which is fully submerged in a fluid of density D, in a gravitational field of strength, g. The force due to buoyancy will be:
+
+<p class="centered padded"><i>mass of fluid displaced * acceleration due to gravity =</i></p>
+
+<p class="centered padded"><i>volume of fluid displaced * fluid density * acceleration due to gravity =</i></p>
+
+<p class="centered padded"><i>volume of the sphere * fluid density * acceleration due to gravity =</i></p>
+
+<p class="centered padded"><i><sup>4</sup>&frasl;<sub>3</sub>&pi;r<sup>3</sup>Dg</i></p>
+
+
+
+
+
+<p>The force due to gravity will be:</p>
+
+<p class="centered padded"><i>mass * -acceleration due to gravity =</i></p>
+
+<p class="centered padded"><i>volume of sphere * sphere density * -acceleration due to gravity =</i></p>
+
+<p class="centered padded"><i>-<sup>4</sup>&frasl;<sub>3</sub>&pi;r<sup>3</sup>dg</i></p>
+
+
+
+<p>At this point hopefully you will notice that the two equations look very similar. Let's see what we get if we now try to resolve the two forces.</p>
+	
+<p class="centered padded"><i>Resultant force = </i></p>
+
+<p class="centered padded"><i><sup>4</sup>&frasl;<sub>3</sub>&pi;r<sup>3</sup>Dg - <sup>4</sup>&frasl;<sub>3</sub>&pi;r<sup>3</sup>dg = </i></p>
+
+<p class="centered padded"><i>(4</sup>&frasl;<sub>3</sub>&pi;r<sup>3</sup>g)(D - d)</i></p>	
+
+<p>Looking at the left hand bracket we see that g, r^3, pi and 4/3 are all positive, meaning the left hand bracket is a positive number. Looking at the right hand bracket we see that it is positive when D > d, it is 0 when D = d and it is negative when D < d. A positive resultant force means the sphere will be accelerated upwards, a negative resultant force means the sphere will be accelerated downwards, and force of 0 means there will be no acceleration.</p>
+
+<p>The result of this is that an object will float to the top in a fluid when it's density is lower than the fluid density, it will sink when it's density is higher than the fluid density, and it won't move when it's density is equal to the fluid density.</p>
+
+<!-- Ball simulator canvas-->
+<canvas id="simulator-canvas"></canvas>
+
+<!-- Ball simulator options -->
+<table>
+  <tr>
+    <th>Fluid density (kgm<sup>-3</sup>):</th>
+    <th><input type="text" value="1.23" id="fluid-density-text"></th>
+    <th><input type="range" min="0" max="1000" value="1.23" class="slider" id="fluid-density-slider"></th>
+    <th>&nbsp; Fluid:</th>
+    <th>
+        <select name= "fluid" id="fluid-density-selecter">
+            <option value="empty"></option>
+            <option selected value="emptySpace">Vacuum</option>
+            <option selected value="earth">Air</option>
+            <option value="water">Water</option>
+        </select>
+    </th>
+  </tr>
+  <tr>
+    <th>Ball material density (kgm<sup>-3</sup>): </th>
+    <th><input type="text" value="7850" id="material-density-text"></th>
+    <th><input type="range" min="35" max="20000" value="7850" class="slider" id="material-density-slider"></th>
+    <th>&nbsp; Material: </th>
+    <th>
+      <select name= "material" id="material-density-selecter">
+          <option value="empty"></option>
+          <option value="cork">Cork</option>
+          <option value="woodYew">Wood (Yew)</option>
+          <option value="ice">Ice</option>
+          <option value="water">Water</option>
+          <option value="concrete">Concrete</option>
+          <option value="titanium">Titanium</option>
+          <option value="steel">Steel</option>
+          <option selected value="iron">Iron</option>
+          <option value="gold">Gold</option>
+      </select>
+    </th>
+  </tr>
+</table>
+<table>
+  <tr>
+      <th class="th-number-padded">Bounce on ceiling: <input type="checkbox" id="ceiling-bounce"></th>
+  </tr>
+</table>
+
+{% load static %}
+<script src="{% static 'physics/scripts/simulator.js' %}"></script>
+
+<h3 style="padding-top: 10%;">Asteroids Game and Ball Simulator</h3>
+
+<p>
+  Now that you have finished the lessons of the laws of nature, have a go at our
+  asteroids simulation game where you try dodge asteroids in a zero-gravity, zero-drag 
+  environment. And notice that it is much harder than in the movies!
+</p>
+
+<p>
+  Also the ball simulator you have been playing with in this exercises with all the 
+  different settings can be found be here.
+</p>
+
+<!-- Links to asteroids game and the complete ball simulator -->
+<h3><a href="/asteroids">Asteroids game</a></h3>
+<h3><a href="/simulator">Simulator</a></h3>
+
+
+{% include 'physics/lesson-pagination.html' %}
+
+{% endblock %}

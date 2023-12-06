@@ -1,0 +1,78 @@
+{% extends "physics/layout.html" %}
+
+{% block title %}
+    Gravity
+{% endblock %}
+
+{% block body %}
+
+<!-- Laws of nature overview text-->
+<h3>Understanding the laws of motion</h3>
+
+<p>
+    There are many laws that govern our world. Often when we talk about
+    laws we are referring to man-made laws, constructed and enforced by governments 
+    to control  certain aspects of a society. However unlike man-made laws, 
+    there are laws that are not socially constructed. 
+    They "existed" before us and will be here after we're gone, and what's more, 
+    they can't be broken! These are the laws of nature.
+</p>
+<p>
+    Now there are many laws of nature to be explored, understood and utilised, 
+    however here we will conscern ourselves with the basics and specifically ones 
+    that are important for the understanding of space, namely, the laws of motion.
+</p>
+
+<!-- Beginning of gravity lesson text -->
+<h3>Gravity</h3>
+
+<p>
+    Gravity is the law of attraction of mass. That is, that everything with mass 
+    is attracting everything else with mass. The more mass, the stronger the 
+    attraction. That is why we as humans in the presence of the Earth's gravity 
+    are pulled towards the Earth, and if we were to say, throw a ball up into the 
+    air, it will come down. What is less familiar to us however is the situation of 
+    not being in the presence of a strong gravitation field, like for instance, in 
+    most of space. We'll come back to gravity in the section on black holes but 
+    for now, this brings us to another law of nature.
+</p>
+<p>
+    But first, have a play around with the simulator below. Change the strength 
+    of gravity, g, and see what affect this has when you throw the ball.
+</p>
+
+<!-- Ball simulator canvas-->
+<canvas id="simulator-canvas"></canvas>
+
+<!-- Ball simulator options -->
+<table>
+    <tr>
+        <th>Strength of gravity, g (ms<sup>-2</sup>):</th>
+        <th><input type="text" value="9.81" id="g-text"></th>
+        <th><input type="range" min="0" max="30" value="9.81" class="slider" id="g-slider"></th>
+        <th>&nbsp; Planet:</th>
+        <th>
+            <select name= "gravity" id="g-selector">
+                <option value="empty"></option>
+                <option value="emptySpace">Vacuum</option>
+                <option value="moon">The Moon</option>
+                <option value="mercury">Mercury</option>
+                <option value="venus">Venus</option>
+                <option selected value="earth">Earth</option>
+                <option value="saturn">Saturn</option>
+                <option value="neptune">Neptune</option>
+                <option value="jupiter">Jupiter</option>
+            </select>
+        </th>
+    </tr>
+    <tr>
+        <th>Bounce on ceiling: <input type="checkbox" id="ceiling-bounce"></th>
+    </tr>
+</table>
+
+{% load static %}
+<script src="{% static 'physics/scripts/simulator.js' %}"></script>
+
+{% include 'physics/lesson-pagination.html' %}
+
+{% endblock %}

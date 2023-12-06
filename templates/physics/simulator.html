@@ -1,0 +1,178 @@
+{% extends "physics/layout.html" %}
+
+{% block title %}
+    Simulator
+{% endblock %}
+
+{% block body %}
+
+<!-- Text about the simulator -->
+<h3>Laws of Nature Physics Simulator</h3>
+
+<p>
+    If you haven't already visited the lessons on some of the laws of nature, please
+    do so. Otherwise enjoy using this simulator which has all of the settings
+    from those lessons available for you to play around with.
+</p>
+
+<p>You might find it easier to use this simulator using the browser full screen mode. Press F11 for this.</p>
+
+<!-- Ball simulator canvas-->
+<canvas id="simulator-canvas"></canvas>
+
+<!-- Ball simulator buttons-->
+<div>
+    <button id="pauseButton">Pause</button>
+    <button id="resetButton">Reset</button>
+    <button id="setHeightButton">Set Height</button>
+    <input type="text" value=0 id="setHeightInput">
+    &nbsp; 
+    Zoom: <span id="zoomSpan">1.00x</span><input type="range" id="zoomSlider" min=0.05 max = 2 value = 1 step = 0.05>
+</div>
+
+<!-- Ball simulator options-->
+<table>
+    <tr>
+        <th>Strength of gravity, g (ms<sup>-2</sup>):</th>
+        <th><input type="text" value="9.81" id="g-text"></th>
+        <th><input type="range" min="0" max="30" value="9.81" class="slider" id="g-slider"></th>
+        <th>&nbsp; Planet:</th>
+        <th>
+            <select name= "gravity" id="g-selector">
+                <option value="empty"></option>
+                <option value="emptySpace">Empty Space</option>
+                <option value="moon">The Moon</option>
+                <option value="mercury">Mercury</option>
+                <option value="venus">Venus</option>
+                <option selected value="earth">Earth</option>
+                <option value="saturn">Saturn</option>
+                <option value="neptune">Neptune</option>
+                <option value="jupiter">Jupiter</option>
+            </select>
+        </th>
+    </tr>
+
+    <tr>
+        <th>Fluid density (kgm<sup>-3</sup>):</th>
+        <th><input type="text" value="1.23" id="fluid-density-text"></th>
+        <th><input type="range" min="0" max="1000" value="1.23" class="slider" id="fluid-density-slider"></th>
+        <th>&nbsp; Fluid:</th>
+        <th>
+            <select name= "fluid" id="fluid-density-selecter">
+                <option value="empty"></option>
+                <option value="emptySpace">Vacuum</option>
+                <option selected value="earth">Air</option>
+                <option value="water">Water</option>
+                <option value="moon">Atmosphere (The Moon)</option>
+                <option value="mercury">Atmosphere (Mercury)</option>
+                <option value="venus">Atmosphere (Venus)</option>
+                <option value="saturn">Atmosphere (Saturn)</option>
+                <option value="neptune">Atmosphere (Neptune)</option>
+                <option value="jupiter">Atmosphere (Jupiter)</option>
+            </select>
+        </th>
+    </tr>
+
+    <tr>
+        <th>Ball material density (kgm<sup>-3</sup>): </th>
+        <th><input type="text" value="7850" id="material-density-text"></th>
+        <th><input type="range" min="100" max="20000" value="7850" class="slider" id="material-density-slider"></th>
+        <th>&nbsp; Material: </th>
+        <th>
+            <select name= "material" id="material-density-selecter">
+                <option value="empty"></option>
+                <option value="cork">Cork</option>
+                <option value="woodYew">Wood (Yew)</option>
+                <option value="ice">Ice</option>
+                <option value="water">Water</option>
+                <option value="concrete">Concrete</option>
+                <option value="titanium">Titanium</option>
+                <option value="steel">Steel</option>
+                <option selected value="iron">Iron</option>
+                <option value="gold">Gold</option>
+            </select>
+        </th>
+    </tr>
+
+    <tr>
+        <th>Coefficient of friction: </th>
+        <th><input type="text" value=0.1 id="friction-text"></th>
+        <th><input type="range" min=0 max=1.5 value=0.1 step=0.01 class="slider" id="friction-slider"></th>
+    </tr>
+    
+    <tr>
+        <th>Energy lost on bounce (%): </th>
+        <th><input type="text" value="50" id="energy-lost-text"></th>
+        <th><input type="range" min="0" max="100" value="50" class="slider" id="energy-lost-slider"></th>
+    </tr>
+    <tr>
+        <th>Ball radius (m): </th>
+        <th><input type="text" value="0.3" id="ball-radius-text"></th>
+        <th><input type="range" min="0.1" max="1" value="0.3" step="0.1" class="slider" id="ball-radius-slider"></th>
+        <th>&nbsp; Keep constant: 
+            <input type="radio" id="changeRadiusMassConstant" value="mass" name="changeRadiusKeepConstant">Mass</button>
+            <input type="radio" id="changeRadiusDensityConstant" value="density" name="changeRadiusKeepConstant" checked="checked">Density</button>
+        </th>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th class="th-number-padded">Bounce on ceiling: <input type="checkbox" id="ceiling-bounce"></th>
+        <th class="th-number-padded">Pause when ball hits floor or ceiling: <input type="checkbox" id="pauseOnSurfaceCheckbox"></th>
+        <th class="th-number-padded">Reset on set height: <input type="checkbox" id="resetWhenSetHeightCheckbox" checked="checked"></th>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Position: </th>
+        <th>(</th>
+        <th class="th-number"><span id="xCoordinate"></span>m</th>
+        <th>,</th>
+        <th class="th-number"><span id="yCoordinate"></span>m</th>
+        <th>)</th>
+    </tr>
+    <tr>
+        <th>Velocity: </th>
+        <th>(</th>
+        <th class="th-number"><span id="xVelocity"></span>ms<sup>-1</sup></th>
+        <th>,</th>
+        <th class="th-number"><span id="yVelocity"></span>ms<sup>-1</sup></th>
+        <th>)</th>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th class="th-number-padded">Mass : <span id="ballMass"></span>kg</th>
+        <th class="th-number-padded">Density : <span id="ballDensity"></span>kgm<sup>-3</sup></th>
+        <th class="th-number-padded">Volume : <span id="ballVolume"></span>m<sup>3</sup></th>
+        <th class="th-number-padded">Time since reset : <span id="timeSinceReset"></span> seconds</th>
+    </tr>
+</table>
+
+<!-- Chart option settings -->
+<div><strong>
+    <button id="clearChartButton">Clear Chart</button>
+    <!-- Radio buttons for displaying position/velocity/acceleration/energy -->
+    <input type="radio" id="chartPosButton" value="Position" name="chartDisplayType">Position</button>
+    <input type="radio" id="chartVelButton" value="Velocity" name="chartDisplayType" checked="checked">Velocity</button>
+    <input type="radio" id="chartAccelButton" value="Acceleration" name="chartDisplayType">Acceleration</button>
+    <!-- <input type="radio" id="chartEnergyButton" value="Energy" name="chartDisplayType">Energy</button> -->
+    
+    <!-- Radio buttons for displaying x/y -->
+    &nbsp;
+    <input type="radio" id="chartXButton" value="X" name="chartDisplayXY">X</button>
+    <input type="radio" id="chartYButton" value="Y" name="chartDisplayXY" checked="checked">Y</button>
+    
+    &nbsp;Limit data points shown: <input type="checkbox" id="limitChartCheckbox"> 
+    &nbsp;Max data points: <input type="text" value=200 id="chartMaxDataPoints">
+</strong></div>
+
+{% load static %}
+<script src="{% static 'physics/scripts/simulator.js' %}"></script>
+<script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script></head>
+
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+{% endblock %}
+

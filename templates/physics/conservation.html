@@ -1,0 +1,145 @@
+{% extends "physics/layout.html" %}
+
+{% block title %}
+    Conservation Laws
+{% endblock %}
+
+{% block body %}
+
+<!-- Beginning of conservation of energy lesson text-->
+<h3>Conservation of Energy</h3>
+<p>
+  Energy comes in various different forms, for example; we can have energy in the 
+  form of movement, called kinetic energy; energy in the form of heat; potential 
+  energy, energy that is "stored" in an object by gravity or some other means 
+  (imagine a book on a shelf, if we push the book off the shelf, it will gain 
+  kinetic energy. We say that the potential energy is converted to kinetic energy).
+</p>
+
+<p>The law of conservation of energy is that:</p>
+
+<p class="centered padded">
+  Energy is always conserved, meaning it is never destroyed. Energy can only 
+  ever be converted from one form to another.
+</p>
+
+<p>
+  So for instance say we take some wood and burn it. There is chemical energy 
+  stored in the wood, when we burn it we convert that energy mostly into heat 
+  energy, but some into light too. That heat energy will then spread out and heat 
+  up the air and all the surroundings. 
+</p>
+
+<p>
+  Another example: we drop a heavy ball onto the ground. The ball starts off 
+  with gravitational potential energy which gets converted into kinetic energy. 
+  Then when the ball hits the ground, it sends vibrations through the ground 
+  which is also kinetic energy. Instead of having a ball that is moving fast, 
+  instead we now have a ball that is still and the ground that is vibrating ever so 
+  slightly more than it was before.
+</p>
+
+<p>
+  Here is the simulator again with fluid density but now you have another option that 
+  determines how much energy is lost when the ball collides with a wall.
+</p>
+
+<p>Questions to think about: </p>
+
+<ul>
+  <li>
+    <p><strong>
+      When the ball slows down, where does that kinetic energy go?
+    </p></strong>
+  </li>
+  <li>
+    <p><strong>
+      What happens when the ball is in a vaccuum (fluid density is 0) 
+      and no energy is lost when the ball bounces?
+    </p></strong>
+  </li>
+</ul>
+
+<!-- Ball simulator canvas -->
+<canvas id="simulator-canvas"></canvas>
+
+<!-- Ball simulator options-->
+<table>
+  <tr>
+    <th>Fluid density (kgm<sup>-3</sup>):</th>
+    <th><input type="text" value="1.23" id="fluid-density-text"></th>
+    <th><input type="range" min="0" max="1000" value="1.23" class="slider" id="fluid-density-slider"></th>
+    <th>&nbsp; Fluid:</th>
+    <th>
+        <select name= "fluid" id="fluid-density-selecter">
+            <option value="empty"></option>
+            <option selected value="air">Air</option>
+            <option value="water">Water</option>
+        </select>
+    </th>
+  </tr>
+
+  <tr>
+    <th>Coefficient of friction: </th>
+    <th><input type="text" value=0.1 id="friction-text"></th>
+    <th><input type="range" min=0 max=1.5 value=0.1 step=0.01 class="slider" id="friction-slider"></th>
+</tr>
+
+  <tr>
+    <th>Energy lost on bounce (%): </th>
+    <th><input type="text" value="50" id="energy-lost-text"></th>
+    <th><input type="range" min="0" max="100" value="50" class="slider" id="energy-lost-slider"></th>
+  </tr>
+
+  <tr>
+    <th>Bounce on ceiling: <input type="checkbox" id="ceiling-bounce"></th>
+  </tr>
+</table>
+
+{% load static %}
+<script src="{% static 'physics/scripts/simulator.js' %}"></script>
+
+<!-- End of ball simulator -->
+
+<!-- Gif of a newtons cradle -->
+<h5 class="centered" style="padding-top: 5%;">
+  A newton's cradle demonstrating conservation of energy.
+</h5>
+<img src="/static/images/newtons_cradle.gif" alt="newtons cradle" class="centered-image">
+
+<!-- Beginning of conservation of momentum lesson text -->
+<h3 style="padding-top: 8%;">Conservation of Momentum</h3>
+
+<p>
+  The momentum of an object is defined as such:
+</p>
+
+<p class="centered padded">Momentum = mass x velocity</p>
+
+<p>
+  Now it turns out momentum is also conserved, meaning it can never be lost, 
+  it can only be transferred to and from different objects.
+</p>
+
+<p>
+  Let's look at an example:
+</p>
+<p>
+  Imagine a rocket in space not moving. It currently has net momentum of 0 in all directions.
+  Say the pilot now wants to move the rocket in a direction s. Well conservation of 
+  momentum has to be conserved and so what happens is that for the rocket to gain velocity
+  , gas is shot out in the direction opposite to s very fast.
+</p>
+<p>
+  The gas that is shot out has negative momentum in the direction s, since it is travelling
+  in the opposite direction and so through conservation of momentum, the rocket gains
+  positive momentum in th direction s of the same magnitude as that of the gas. 
+</p>
+<p>
+  The result is that the net momentum is still 0, but instead we now have gas travelling
+  in one direction and the rocket travelling in the other.
+</p>
+
+{% include 'physics/lesson-pagination.html' %}
+
+{% endblock %}

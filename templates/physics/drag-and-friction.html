@@ -1,0 +1,134 @@
+{% extends "physics/layout.html" %}
+
+{% block title %}
+    Drag and Friction
+{% endblock %}
+
+{% block body %}
+
+<!-- Beginning of drag lesson text -->
+<h3>Drag</h3>
+
+<p>
+  While not fundamental laws of nature, drag and friction are constently in 
+  effect in life on Earth. Drag is the force of resistance against movement 
+  from a fluid, such as air or water, when something is moving through it. 
+  So for example if someone throws a ball through the air, the ball is constantly 
+  having to push air particles out of the way, which slows the ball down. 
+  This, together with gravity, is the reason that when we throw a ball, it 
+  doesn't just keep going out the same speed in a straight line. 
+  It is being acted upon by drag and gravity and so these forces are 
+  changing the ball's path.
+</p>
+
+<p>
+  We can see how big an effect drag has when looking at the fastest 
+  speeds by vehicles set on Earth vs. in space:
+</p>
+
+<ul>
+  <li>
+    The fastest speed ever recorded by a vehicle on earth was by the x-15 rocketship in 1967 going at a speed of 7,232 Km/hr.
+  </li>
+  <li>
+    The fastest spacecraft Helios 2 however set a record in 1976 of a whopping 252,792 Km/hr. 
+  </li>
+</ul>
+  
+<p>Why such a big difference?</p>
+
+<p>
+  The largest factor is drag. On earth an areoplane is constantly being 
+  slowed down by the air. It's always bumping into air particles that take energy 
+  away from the plane, so the plane has to always be burning fuel to stay at the 
+  same speed. In fact, all aircraft will reach a speed where the acceleration from 
+  the engine is the same as the decceleration from the drag and so it can go no 
+  faster. 
+  On the other hand a rocket travelling through space is in a vacuum, 
+  meaning there is no air to slow the rocket down. 
+  If the rocket keeps accelerating it will just get faster and faster.
+</p>
+
+<!-- Beginning of friction lesson text -->
+<h3 style="padding-top: 10%;">Friction</h3>
+
+<p>
+  Friction is a similar to drag in that it is a force of resistance against movement, 
+  but it is between solids. An example would be if you press your thumb hard against 
+  the table and then try to move it to the side, you'll notice that at first, when you 
+  put just a small amount of force in, your thumb won't move. You have to put more force 
+  in to move it. This is because friction is resisting the movement, and so you must 
+  put in enough force to overcome the friction. 
+</p>
+
+<p>
+  Now the magnitude of the friction is down to the surfaces that are coming into contact. 
+  For instance ice produces very little friction where as concrete would produce much 
+  more. We could observe this by rolling a tennis ball gently along some ice or concrete. 
+  With the same initial force, the tennis ball will go much further on the ice because 
+  there is much less energy being taken out by the ice.
+</p>
+
+<p>
+  Now what do we mean when we say energy being "taken out of" the ice? Where does it go? 
+  Is it destroyed?
+</p>
+
+<p>Well this conveniently brings us onto our final topic...
+  But first, time for you to have a play around with drag and friction. See what happens in the simulator 
+  below when you change fluid density or the friction coefficient.
+  You may notice that in the simulator the coefficient is called the coefficient of rolling friction.
+  This is because an object that is rolling will experience less friction than one that is just sliding
+  along the surface, and so we have a different coefficient for a rolling object.
+</p>
+<p>Questions to think about: </p>
+
+<ul>
+  <li>
+    <p><strong>
+      What happens to the movement of the ball when it is in water rather than air?
+    </p></strong>
+  </li>
+  <li>
+    <p><strong>
+      What happens when the ball is in a vaccuum? (Meaning the fluid density is 0).
+    </p></strong>
+  </li>
+</ul>
+
+<!-- Ball simulator canvas-->
+<canvas id="simulator-canvas"></canvas>
+
+<!-- Ball simulator options -->
+<table>
+  <tr>
+    <th>Fluid density (kgm<sup>-3</sup>):</th>
+    <th><input type="text" value="1.23" id="fluid-density-text"></th>
+    <th><input type="range" min="0" max="1000" value="1.23" class="slider" id="fluid-density-slider"></th>
+    <th>&nbsp; Fluid:</th>
+    <th>
+        <select name= "fluid" id="fluid-density-selecter">
+            <option value="empty"></option>
+            <option selected value="emptySpace">Vacuum</option>
+            <option selected value="earth">Air</option>
+            <option value="water">Water</option>
+        </select>
+    </th>
+    <tr>
+      <th>Coefficient of friction: </th>
+      <th><input type="text" value=0.1 id="friction-text"></th>
+      <th><input type="range" min=0 max=1.5 value=0.1 step=0.01 class="slider" id="friction-slider"></th>
+  </tr>
+  </tr>
+
+  <tr>
+    <th>Bounce on ceiling: <input type="checkbox" id="ceiling-bounce"></th>
+  </tr>
+</table>
+
+{% load static %}
+<script src="{% static 'physics/scripts/simulator.js' %}"></script>
+
+{% include 'physics/lesson-pagination.html' %}
+
+{% endblock %}

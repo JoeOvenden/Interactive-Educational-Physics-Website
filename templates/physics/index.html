@@ -1,0 +1,14 @@
+{% extends "physics/layout.html" %}
+
+{% block title %}
+    The laws of motion
+{% endblock %}
+
+{% block body %}
+
+<!-- Background canvas and script -->
+<canvas id="canvas"></canvas>
+{% load static %}
+<script src="{% static 'physics/scripts/blackhole.js' %}" type="module"></script>
+
+{% endblock %}
