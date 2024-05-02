@@ -18,7 +18,7 @@
 
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
-                <a class="navbar-brand" href="{% url 'index' %}">A Short Guide to the Laws of Motion</a>
+                <a class="navbar-brand" href="{% url 'physics:index' %}">A Short Guide to the Laws of Motion</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -29,15 +29,15 @@
                         Lessons
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{% url 'static_page' 'gravity' %}">Gravity</a>
-                        <a class="dropdown-item" href="{% url 'static_page' 'newtons-law' %}">Newton's First Law</a>
-                        <a class="dropdown-item" href="{% url 'static_page' 'drag-and-friction' %}">Drag and Friction</a>
-                        <a class="dropdown-item" href="{% url 'static_page' 'conservation' %}">Conservation of Energy and Momentum</a>
-                        <a class="dropdown-item" href="{% url 'static_page' 'buoyancy' %}">Buoyancy</a>
+                        <a class="dropdown-item" href="{% url 'physics:static_page' 'gravity' %}">Gravity</a>
+                        <a class="dropdown-item" href="{% url 'physics:static_page' 'newtons-law' %}">Newton's First Law</a>
+                        <a class="dropdown-item" href="{% url 'physics:static_page' 'drag-and-friction' %}">Drag and Friction</a>
+                        <a class="dropdown-item" href="{% url 'physics:static_page' 'conservation' %}">Conservation of Energy and Momentum</a>
+                        <a class="dropdown-item" href="{% url 'physics:static_page' 'buoyancy' %}">Buoyancy</a>
                       </div>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'static_page' 'simulator' %}">Simulator</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'static_page' 'about' %}">About this project</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'physics:static_page' 'simulator' %}">Simulator</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'physics:static_page' 'about' %}">About this project</a></li>
                     <li class="nav-item"><a class="nav-link" href="https://github.com/JoeOvenden/CS50-Final-Project">Source code</a></li>
                   </ul>
                 </div>
