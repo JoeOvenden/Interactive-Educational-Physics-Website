@@ -1,0 +1,2 @@
+- Fixed error where clicking the website name on the navbar took you to a different project
+- Removed link to asteroids project
